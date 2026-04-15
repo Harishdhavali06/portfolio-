@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #1e3c72, #2a5298);
+  color: #fff;
+  overflow-x: hidden;
+}
+
+header {
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow-x: hidden;
+  transition: background 0.3s ease ;
+
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: rgb(153, 135, 0);
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.nav-links a {
+  color: #bb86fc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #f9d342;
+}
+
+.theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.theme-toggle:hover {
+  transform: rotate(20deg);
+}
+
+.hero {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.highlight {
+  color:#f9d342;
+
+}
+
+.typewriter {
+  border-right: 0px solid #f9d342;
+  padding-right: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  animation: blink 0.7s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color:#f9d342;}
+}
+/* 
+this is about section styleing */
+.about {
+  padding: 80px 20px;
+  background: #fff;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.about.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.about p {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #555;
+  line-height: 1.6;
+}
+
+/* 
+this is project section styleing */
+.projects {
+  padding: 80px 20px;
+  background: #f5f5f5;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+}
+
+.projects.visiblee{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 40px;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.project-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card img {
+  width: 100%;
+  height: 200px;
+  border-radius: 12px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content {
+  padding: 20px;
+  border-radius: 12px;
+  background: #ffffff;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.project-card h3 {
+  color: #764ba2;
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* this is resume section  */
+.resume-section {
+  padding: 80px 40px;
+  text-align: center;
+  background: #f4f4f4;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+
+}
+
+.visibleeeee{
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.resume-section h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.resume-btn {
+  padding: 14px 30px;
+  background: #764ba2;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 1.1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.resume-btn:hover {
+  background: #5e3c9d;
+  transform: translateY(-3px);
+}
+
+/* Dark mode compatibility */
+.dark-mode .resume-section {
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+
+.dark-mode .resume-btn {
+  background: #bb86fc;
+}
+
+.dark-mode .resume-btn:hover {
+  background: #9b6bdf;
+}
+
+
+/* this is contact styleing */
+.contact {
+  padding: 80px 20px;
+  background: #fff;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.contact.visibleee{
+  opacity: 1;
+  transform: translateY(0);
+
+}
+.contact h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.input-box {
+  margin-bottom: 20px;
+}
+
+.input-box input,
+.input-box textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: border 0.3s ease;
+}
+
+.input-box input:focus,
+.input-box textarea:focus {
+  border-color: #764ba2;
+  outline: none;
+}
+
+.status-msg {
+  margin-top: 15px;
+  color: green;
+  font-weight: bold;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: #764ba2;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #5e3c9d;
+}
+/* 
+this is my skills section */
+.skills {
+  padding: 80px 20px;
+  background: #f9f9f9;
+  color: #2a5298;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.skills.visibleeee{
+  opacity: 1;
+  transform: translateY(0);
+
+}
+.skills h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+}
+
+.skill-box {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.skill {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.skill span {
+  font-weight: 600;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.progress-bar {
+  width: 100%;
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 12px;
+  background: #764ba2;
+  transition: width 1s ease-in-out;
+}
+/* 
+this is dark mode styleing */
+body.dark-mode {
+  background: #121212;
+  color: #f0f0f0;
+}
+#theme-toggle {
+  position: absolute;
+  top: 20px;
+  right: 70px;
+  font-size: 20px;
+  z-index: 1001;
+  border: none;
+  cursor: pointer;
+
+}
+.dark-mode header{
+    background: #272727;
+}
+
+.dark-mode .about{
+    background: #555;
+}
+.dark-mode .about h2{
+  color: #1a1a1a;
+}
+
+.dark-mode .about p{
+    color: #333;
+}
+
+.dark-mode .projects{
+  background: #1e1e1e;
+  color: #f0f0f0;
+}
+.dark-mode .projects h2{
+    color: #555;
+}
+
+.dark-mode .project-card{
+    background: #1e1e1e;
+}
+.dark-mode .card-content {
+  background: #1e1e1e;
+}
+
+.dark-mode .project-card:hover{
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(128, 244, 234, 0.15);
+}
+.dark-mode .skills{
+    background: #1a1a1a;
+}
+
+.dark-mode .skills h2{
+  color: #555;
+}
+
+.dark-mode .contact{
+    background: #1a1a1a;
+}
+
+.dark-mode .contact h2{
+    color: #555;
+}
+
+.dark-mode .progress-bar {
+  background: #333;
+}
+
+.dark-mode .progress {
+  background: #bb86fc;
+}
+
+.dark-mode .btn {
+  background: #bb86fc;
+}
+
+.dark-mode .btn:hover {
+  background:#5c2ba0;
+}
+
+/* adding hamburger to navbar */
+/* Hide menu in small screens by default */
+/* .nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+} */
+.mobile-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 250px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(5px);
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  padding: 60px 20px;
+}
+
+.mobile-nav.open {
+  transform: translateX(0);
+}
+
+.hamburger {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  z-index: 1001;
+}
+
+.hamburger span {
+  width: 25px;
+  height: 3px;
+  background: #c5c5c5;
+  transition: 0.3s ease;
+}
+
+.nav-active {
+  display: flex;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -6px);
+}
+
+/* Responsive setup */
+@media (max-width: 768px) {
+  #theme-toggle{
+    right: 60px;
+  }
+  .hamburger{
+    right: 10px;
+  }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    background: #444e;
+    position: absolute;
+    top: 80px;
+    right: 10px;
+    width: 200px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .hamburger {
+    display:flex;
+  }
+}
+
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(3px);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+/* Dark mode menu background */
+.dark-mode .navbar {
+  background: #1e1e1e;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">HARISH</h1>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div class="overlay" id="overlay"></div>
+
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          🌙
+        </button>
+  </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+    <h2>Hi, I'm <span class="highlight typewriter" id="typed-text"></span></h2>      <p>A passionate web developer 👨‍💻</p>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-content">
+      <h2>About Me</h2>
+      <p>
+        I'm a passionate web developer who loves crafting modern and interactive web experiences. I enjoy learning new technologies and bringing ideas to life through code.
+      </p>
+    </div>
+  </section>
+
+  <section class="projects" id="projects">
+    <h2>My Projects</h2>
+    <div class="project-grid">
+      <div class="project-card">
+        <img src="cC:\Users\Harish Dhavali\Documents\6f170a82ce5100e4244d5413d8417788.jpg" alt="Project 1" />
+        <div class="card-content">
+        <h3>Portfolio Website</h3>
+        <p>A fully responsive portfolio built with HTML, CSS, and JavaScript.</p></div>
+      </div>
+      <div class="project-card">
+        <img src="assets/project2.jpg" alt="Project 2" />
+        <div class="card-content">
+        <h3>Todo App</h3>
+        <p>A simple and functional todo app with local storage support.</p></div>
+      </div>
+      <div class="project-card">
+        <img src="assets/project2.jpg" alt="Project 3" />
+        <div class="card-content">
+        <h3>Weather App</h3>
+        <p>Real-time weather updates using the OpenWeather API.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="skills" id="skills">
+    <h2>My Skills</h2>
+    <div class="skill-box">
+      <div class="skill">
+        <span>HTML</span>
+        <div class="progress-bar"><div class="progress" style="width: 90%"></div></div>
+      </div>
+      <div class="skill">
+        <span>CSS</span>
+        <div class="progress-bar"><div class="progress" style="width: 85%"></div></div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="progress-bar"><div class="progress" style="width: 75%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Python</span>
+        <div class="progress-bar"><div class="progress" style="width: 70%"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="resume" class="resume-section">
+    <h2>Download My Resume</h2>
+    <a href="file:///C:/Users/Harish%20Dhavali/Documents/resume%20for%20freelancing%20.pdf" class="btn resume-btn" download>
+      📄 Download Resume
+    </a>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Contact Me</h2>
+    <form id="contact-form">
+      <div class="input-box">
+        <input type="text" id="name" placeholder="Your Name" required />
+      </div>
+      <div class="input-box">
+        <input type="email" id="email" placeholder="Your Email" required />
+      </div>
+      <div class="input-box">
+        <textarea id="message" rows="3" placeholder="Your Message" required></textarea>
+      </div>
+      <button type="submit" class="btn">Send Message</button>
+      <p id="form-status" class="status-msg"></p>
+    </form>
+  </section>
+
+  <script src="C:\Users\Harish Dhavali\OneDrive\문서\HTML\portfolio\backend.js"></script>
+
+</body>
+</html> 
